@@ -15,7 +15,7 @@ def create_country(data):
 
     #Execute the SQL
     mysql = ("INSERT INTO Country (CountryId, Name, Population, Continent) VALUES (%s, %s, %s, %s)")
-    values = (countryId, name, population, continent)
+    values = (country_id, name, population, continent)
     mycursor.execute(mysql, values)
 
     #Close connection
