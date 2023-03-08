@@ -2,6 +2,26 @@
 from flask import Flask, request, jsonify
 import conn
 
+#Create a country record
+def createCountry(data):
+    #open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    countryId = data['CountryId']
+    name = data['Name']
+    population = data['Population']
+    continent = data['Continent']
+
+    #Execute the SQL
+    mysql = ("INSERT INTO Country (CountryId, Name, Population, Continent) VALUES (%s, %s, %s, %s)")
+    values = (countryId, name, population, continent)
+    mycursor.execute(mysql, values)
+
+    #Close connection
+    mycursor.close()
+    conn.myconn.close()
+    
 
 
 #Gets all records from country table using SQL
@@ -12,7 +32,7 @@ def allCountries():
 
     #Execute the SQL
     mycursor.execute("SELECT * FROM Country")
-    results = mycursor
+    results = mycursor.fetchall()
 
     #Close connection
     mycursor.close()
