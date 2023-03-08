@@ -43,5 +43,8 @@ mvnw
 mvnw.cmd
 pom.xml
 
+# Ignore conn.py for security
+app/conn.py
+
 # Ignore the src/ directory
 src/
