@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import conn
 
 #Create a country record
-def createCountry(data):
+def create_Country(data):
     #open connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
@@ -21,11 +21,11 @@ def createCountry(data):
     #Close connection
     mycursor.close()
     conn.myconn.close()
-    
+
 
 
 #Gets all records from country table using SQL
-def allCountries():
+def all_Countries():
     #open connection
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
