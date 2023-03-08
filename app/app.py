@@ -14,7 +14,7 @@ csrf.init_app(app)
 
 #Update - PUT API
 @app.route('/countries/<int:country_id>', methods=['PUT'])
-def updateCountry(country_id, data):
+def updateCountry(country_id):
     print(country_id)
     data = request.json 
     return country.updateCountry1(country_id, data)
