@@ -13,7 +13,7 @@ csrf.init_app(app)
 
 # Delete - DELETE API
 @app.route('/countries/<int:country_id>', methods=['DELETE'])
-def deleteCountry(country_id):
+def delete_country(country_id):
     result = country.deleteCountry(country_id)
     if result:
         return jsonify({"message": "Country deleted successfully"}), 200
@@ -23,7 +23,7 @@ def deleteCountry(country_id):
 
 # Update - PUT API
 @app.route('/countries/<int:country_id>', methods=['PUT'])
-def updateCountry(country_id):
+def update_country(country_id):
     data = request.json
     result = country.updateCountry1(country_id, data)
     if result:
@@ -34,14 +34,14 @@ def updateCountry(country_id):
 
 # Create - POST API
 @app.route('/countries', methods=['POST'])
-def createCountry():
+def create_country():
     data = request.json
     return country.createCountry(data)
 
 
 # Read API
 @app.get('/countries')
-def getAllCountries():
+def get_all_countries():
     return country.getCountries()
 
 
