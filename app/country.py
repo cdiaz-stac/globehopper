@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 import services
 
 #function to get all countries and return as a JSON object
+#Create a country
 def createCountry(data):
     services.createCountry(data)
     return jsonify({'message' : 'Data inserted successfully'})
