@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore the .mvn/ directory
+.mvn/
+
+# Ignore specific files
+Dockerfile
+README.md
+docker-compose.yml
+mvnw
+mvnw.cmd
+pom.xml
+
+# Ignore the src/ directory
+src/
