@@ -8,7 +8,7 @@ def create_country(data):
     conn.myconn._open_connection()
     mycursor = conn.myconn.cursor()
 
-    countryId = data['CountryId']
+    country_id = data['CountryId']
     name = data['Name']
     population = data['Population']
     continent = data['Continent']
