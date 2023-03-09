@@ -1,21 +1,11 @@
 #Starting point of our WebApp - main 
 #pip install Flask
 
-from flask import Flask, request, jsonify #g
-import country, city #os
+from flask import Flask, request, jsonify 
+import country, city 
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 #Using Flask framework for web app
 app = Flask(__name__)
-#app.secret_key = 'your-secret-key-here'
-
-#with app.app_context():
- #   with app.test_request_context():
-  #      csrf_token = generate_csrf()
-   #     g.csrf_token = csrf_token
-    #    print(csrf_token)
-
-#csrf = CSRFProtect()
-#csrf.init_app(app) # Compliant
 
 ##########################################  COUNTRY   ###################################################
 #Create - POST api
@@ -65,8 +55,10 @@ def deletecityapi(city_id):
     return city.deletecityview(city_id)
 
 
-
-
+@app.route('/cities/<country>', methods=['GET'])
+def get_cities_by_country(country):
+    cities = [city for city in getallcitiesapi if city['country'] == country]
+    return jsonify(cities)
 
 #Execute on the terminal
 if __name__ == '__main__':
