@@ -3,10 +3,11 @@
 
 from flask import Flask, request, jsonify
 import country, city
-
+from flask_wtf.csrf import CSRFProtect
 #Using Flask framework for web app
 app = Flask(__name__)
-
+csrf = CSRFProtect()
+csrf.init_app(app) # Compliant
 ##########################################  COUNTRY   ###################################################
 #Create - POST api
 @app.post('/countries')
