@@ -25,7 +25,7 @@ def delete_country(country_id):
 @app.route('/countries/<int:country_id>', methods=['PUT'])
 def update_country(country_id):
     data = request.json
-    result = country.updateCountry1(country_id, data)
+    result = country.update_country1(country_id, data)
     if result:
         return jsonify({"message": "Country updated successfully"}), 200
     else:
@@ -34,15 +34,15 @@ def update_country(country_id):
 
 # Create - POST API
 @app.route('/countries', methods=['POST'])
-def create_country():
+def create_country1():
     data = request.json
-    return country.createCountry(data)
+    return country.create_country(data)
 
 
 # Read API
 @app.get('/countries')
 def get_all_countries():
-    return country.getCountries()
+    return country.get_countries()
 
 
 # Execute on the terminal

@@ -5,14 +5,14 @@ import services
 
 #function to get all countries and return as a JSON object
 #Create a country
-def create_country(data):
-    services.createCountry(data)
+def create_country1(data):
+    services.create_country(data)
     return jsonify({'message' : 'Data inserted successfully'})
 
 
 
 def get_countries():
-    results = services.allCountries()
+    results = services.all_countries()
     
     data = []
     #Converted a list to dict
