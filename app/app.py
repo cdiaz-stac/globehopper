@@ -11,7 +11,6 @@ app.secret_key = 'your-secret-key'  # Add this line to set a secret key
 csrf = CSRFProtect()
 csrf.init_app(app)
 
-
 # Delete - DELETE API
 @app.route('/countries/<int:country_id>', methods=['DELETE'])
 def delete_country(country_id):
@@ -20,7 +19,6 @@ def delete_country(country_id):
         return jsonify({"message": "Country deleted successfully"}), 200
     else:
         return jsonify({"message": "Country not found"}), 404
-
 
 # Update - PUT API
 @app.route('/countries/<int:country_id>', methods=['PUT'])
