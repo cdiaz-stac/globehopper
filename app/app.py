@@ -2,8 +2,9 @@
 #pip install Flask
 
 from flask import Flask, request, jsonify 
-import country, city 
-from flask_wtf.csrf import CSRFProtect, generate_csrf
+import country, city, json, services
+from flask_wtf.csrf import CSRFProtect 
+
 #Using Flask framework for web app
 app = Flask(__name__)
 
@@ -55,10 +56,19 @@ def deletecityapi(city_id):
     return city.deletecityview(city_id)
 
 
-@app.route('/cities/<country>', methods=['GET'])
-def get_cities_by_country(country):
-    cities = [city for city in getallcitiesapi if city['country'] == country]
-    return jsonify(cities)
+#Define route to get cities by country
+@app.route('/city/<string:country_id>', methods=['GET'])
+def getcountrybycontinent(country_id):
+    # Call the service method to get the cities by country
+    results = services.getcitybycountryservice(country_id)
+    
+    # Return the results as a JSON object
+    return jsonify(results)
+
+#Read (GET) - Search for all Countries in a given continent
+@app.route('/countries/<string:continent>', methods=['GET'])
+def getallcountriesbycontinentapi(continent):
+    return country.getallcountriesbycontinentview(continent)
 
 #Execute on the terminal
 if __name__ == '__main__':

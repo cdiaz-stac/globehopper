@@ -45,6 +45,21 @@ def allcountriesservice():
     db_close_connection()
     return results
 
+#Get all Country records given a continent
+def getallcountriesbycontinentservice(continent):
+    #Open connection
+    conn.myconn._open_connection()
+    mycursor = conn.myconn.cursor()
+
+    #Execute the SQL
+    mycursor.execute(f"select * from Country where Continent = '{continent}'")
+    results = mycursor.fetchall()
+
+    #Close connection
+    mycursor.close()
+    conn.myconn.close()
+
+    return results
 
 #Update a country record
 def updatecountryservice(country_id, data):
@@ -149,3 +164,20 @@ def deletecityservice(city_id):
     print(city_id)
     #Close connection
     db_close_connection()
+
+#Get all cities for a given country
+def getcitybycountryservice(country_id):
+    #Open connection
+    db_open_connection()
+
+    #Execute the SQL
+    mysql = "SELECT * FROM City WHERE CountryId = %s"
+    values = [(country_id)]
+    mycursor.execute(mysql, values)
+    results = mycursor.fetchall()
+
+    #Close connection
+    db_close_connection()
+
+    return results
+

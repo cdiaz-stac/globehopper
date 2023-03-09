@@ -9,14 +9,13 @@ def createcityview(data):
     services.createcityservice(data)
     return jsonify({'message' : 'Data inserted successfully'})
 
-#Get all cities
-def getallcitiesview():
+def getallcitiesview(country_id=None):
     results = services.allcitiesservice()
 
     data = []
     #Converted a list to dict
     for row in results:
-        data.append({
+        city_data = {
             "CityId" : row[0],
             "Name" : row[1],
             "CountryId" : row[2],
@@ -24,9 +23,13 @@ def getallcitiesview():
             "FirstLandmark" : row[4],
             "SecondLandmark" : row[5],
             "ThirdLandmark" : row[6]
-        })
+        }
+        # Filter by country id if provided
+        if country_id is None or city_data["CountryId"] == country_id:
+            data.append(city_data)
 
     return jsonify(data)
+
 
 
 #Update a city record
