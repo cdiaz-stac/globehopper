@@ -3,7 +3,7 @@
 
 from flask import Flask, request, jsonify 
 import country, city, json, services
-from flask_wtf.csrf import CSRFProtect 
+
 
 #Using Flask framework for web app
 app = Flask(__name__)
