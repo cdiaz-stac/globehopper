@@ -2,10 +2,12 @@
 #pip install Flask
 
 from flask import Flask, request, jsonify
-import country, city
+import country, city, os
 from flask_wtf.csrf import CSRFProtect
 #Using Flask framework for web app
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
+
 csrf = CSRFProtect()
 csrf.init_app(app) # Compliant
 ##########################################  COUNTRY   ###################################################
