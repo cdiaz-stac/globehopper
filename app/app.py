@@ -7,6 +7,7 @@ from flask_wtf.csrf import CSRFProtect  # pip install flask_wtf
 
 # Using Flask framework
 app = Flask(__name__)
+app.secret_key = 'your-secret-key'  # Add this line to set a secret key
 csrf = CSRFProtect()
 csrf.init_app(app)
 
