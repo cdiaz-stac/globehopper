@@ -1,48 +1,35 @@
-# Starting point of our WebApp - main
-# pip install Flask
+#Starting point of our WebApp - main 
+#pip install Flask
 
 from flask import Flask, request, jsonify
 import country, city
 
-from flask_wtf.csrf import CSRFProtect  # pip install flask_wtf
-
-# Using Flask framework
+#Using Flask framework for web app
 app = Flask(__name__)
-app.secret_key = 'your-secret-key'  # Add this line to set a secret key
-csrf = CSRFProtect()
-csrf.init_app(app)
 
-# Delete - DELETE API
-@app.route('/countries/<int:country_id>', methods=['DELETE'])
-def delete_country(country_id):
-    result = country.deleteCountry(country_id)
-    if result:
-        return jsonify({"message": "Country deleted successfully"}), 200
-    else:
-        return jsonify({"message": "Country not found"}), 404
-
-# Update - PUT API
-@app.route('/countries/<int:country_id>', methods=['PUT'])
-def update_country(country_id):
+##########################################  COUNTRY   ###################################################
+#Create - POST api
+@app.post('/countries')
+def createcountryapi():
     data = request.json
-    result = country.update_country1(country_id, data)
-    if result:
-        return jsonify({"message": "Country updated successfully"}), 200
-    else:
-        return jsonify({"message": "Country not found"}), 404
+    return country.createcountryview(data)
 
-
-# Create - POST API
-@app.route('/countries', methods=['POST'])
-def create_country1():
-    data = request.json
-    return country.create_country(data)
-
-
-# Read API
+#Read - GET api
 @app.get('/countries')
-def get_all_countries():
-    return country.get_countries()
+def getallcountriesapi():
+    return country.getallcountriesview()
+
+#Update - PUT api
+@app.put('/countries/<int:country_id>')  #Query string parameter
+def updatecountryapi(country_id):
+    data = request.json
+    return country.updatecountryview(country_id, data)
+
+#Delete - DELETE api
+@app.delete('/countries/<int:country_id>')  #Query string parameter
+def deletecountryapi(country_id):
+    return country.deletecountryview(country_id)
+
 
 ##########################################  CITY   ###################################################
 #Create - POST api
@@ -67,6 +54,10 @@ def updatecityapi(city_id):
 def deletecityapi(city_id):
     return city.deletecityview(city_id)
 
-# Execute on the terminal
+
+
+
+
+#Execute on the terminal
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

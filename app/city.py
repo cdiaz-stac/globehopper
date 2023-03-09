@@ -1,3 +1,4 @@
+#Define all functions related to city APIs
 
 from flask import Flask, request, jsonify
 import services

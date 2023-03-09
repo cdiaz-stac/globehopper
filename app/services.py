@@ -11,58 +11,30 @@ def db_close_connection():
     mycursor.close()
     conn.myconn.close() 
 
+############################################# COUNTRY ########################################
 #Create a country record
-def create_country(data):
-    #open connection
+def createcountryservice(data):
+    #OPen connection
     db_open_connection()
 
-    country_id = data['CountryId']
+    countryid = data['CountryId']
     name = data['Name']
     population = data['Population']
     continent = data['Continent']
 
     #Execute the SQL
-    mysql = ("INSERT INTO Country (CountryId, Name, Population, Continent) VALUES (%s, %s, %s, %s)")
-    values = (country_id, name, population, continent)
+    mysql = "INSERT INTO Country (CountryId, Name, Population, Continent) VALUES (%s, %s, %s, %s)"
+    values = (countryid, name, population, continent)
     mycursor.execute(mysql, values)
 
     #Close connection
     db_close_connection()
-
-#Update a country record by its ID
-def update_country(country_id, data):
-    #open connection
-    db_open_connection()
+    
 
 
-    name = data['Name']
-    population = data['Population']
-    continent = data['Continent']
-
-    #Execute the SQL
-    mysql = "UPDATE Country SET Name = %s, Population = %s, Continent = %s WHERE CountryId = %s"
-    values = (name, population, continent, country_id)
-    mycursor.execute(mysql, values)
-
-    #Close connection
-    db_close_connection()
-
-#Delete a country record by its ID
-def delete_country(country_id):
-    #open connection
-    db_open_connection()
-
-    #Execute the SQL
-    mysql = "DELETE FROM Country WHERE CountryId = %s"
-    value = (country_id,)
-    mycursor.execute(mysql, value)
-
-    #Close connection
-    db_close_connection()
-
-#Read all records from country table using SQL
-def all_countries():
-    #open connection
+#Gets all records from Country table using SQL
+def allcountriesservice():
+    #OPen connection
     db_open_connection()
 
     #Execute the SQL
@@ -71,13 +43,44 @@ def all_countries():
 
     #Close connection
     db_close_connection()
-
     return results
+
+
+#Update a country record
+def updatecountryservice(country_id, data):
+    #OPen connection
+    db_open_connection()
+
+    name = data['Name']
+    population = data['Population']
+    continent = data['Continent']
+
+    #Execute the SQL
+    mysql = "UPDATE Country SET Name = %s, Population=%s, Continent=%s WHERE CountryId = %s"
+    values = (name, population, continent, country_id)
+    mycursor.execute(mysql, values)
+
+    #Close connection
+    db_close_connection()
+
+#Delete a country record
+def deletecountryservice(country_id):
+    #OPen connection
+    db_open_connection()
+
+    print(country_id)
+    #Execute the SQL
+    mysql = "DELETE FROM Country WHERE CountryId = %s"
+    values = [(country_id)]
+    mycursor.execute(mysql, values)
+
+    #Close connection
+    db_close_connection()
 
 ############################################# CITY ########################################
 #Create a city record
 def createcityservice(data):
-    #Open connection
+    #OPen connection
     db_open_connection()
 
     cityid = data['CityId']
@@ -94,13 +97,13 @@ def createcityservice(data):
     mycursor.execute(mysql, values)
 
     #Close connection
-    db_close_connection() 
+    db_close_connection()
     
 
 
 #Gets all records from city table using SQL
 def allcitiesservice():
-    #Open connection
+    #OPen connection
     db_open_connection()
 
     #Execute the SQL
@@ -108,15 +111,15 @@ def allcitiesservice():
     results = mycursor.fetchall()
 
     #Close connection
-    db_close_connection() 
+    db_close_connection()
     
     return results
 
 
 #Update a city record
 def updatecityservice(city_id, data):
-    #Open connection
-    db_open_connection() 
+    #OPen connection
+    db_open_connection()
 
     name = data['Name']
     countryid = data['CountryId']
@@ -136,7 +139,7 @@ def updatecityservice(city_id, data):
 
 #Delete a city record
 def deletecityservice(city_id):
-    #Open connection
+    #OPen connection
     db_open_connection()
 
     #Execute the SQL
