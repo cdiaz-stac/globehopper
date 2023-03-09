@@ -8,7 +8,7 @@ def create_country1(data):
     services.create_country(data)
     return jsonify({'message' : 'Data inserted successfully'})
 
-#function to get all countries and return as a JSON object\
+#function to get all countries and return as a JSON object
 def get_countries():
     results = services.all_countries()
     data = []
