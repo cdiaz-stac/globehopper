@@ -2,7 +2,8 @@
 # pip install Flask
 
 from flask import Flask, request, jsonify
-import country
+import country, city
+
 from flask_wtf.csrf import CSRFProtect  # pip install flask_wtf
 
 # Using Flask framework
